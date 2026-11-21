@@ -1,5 +1,5 @@
 
-name: Early Sniper Solana V3
+name: Early Sniper Solana V4
 
 on:
   workflow_dispatch:
@@ -12,9 +12,18 @@ permissions:
 jobs:
   scan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Restore token history
+        uses: actions/cache@v4
+        with:
+          path: .cache/seen_tokens.json
+          key: seen-tokens-${{ github.run_id }}
+          restore-keys: |
+            seen-tokens-
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -28,5 +37,6 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python Scanner.py
         
