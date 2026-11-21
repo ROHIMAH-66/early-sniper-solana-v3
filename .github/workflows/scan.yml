@@ -22,7 +22,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install library
-        run: pip install -r requirements.txt
+        run: run: pip install -r Requirements.txt
 
       - name: Run scanner
         env:
