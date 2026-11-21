@@ -296,8 +296,21 @@ def scan():
                 continue
 
             if security["danger"]:
-                stats["blocked"] += 1
-                continue
+    stats["blocked"] += 1
+
+    print("\nTOKEN DIBLOKIR:")
+    print("Mint:", mint)
+    print("Risiko RugCheck:")
+
+    for risk in security["risks"]:
+        if isinstance(risk, dict):
+            print(
+                "Level:", risk.get("level"),
+                "| Nama:", risk.get("name"),
+                "| Deskripsi:", risk.get("description")
+            )
+
+    continue
 
             warnings = security["warnings"]
 
