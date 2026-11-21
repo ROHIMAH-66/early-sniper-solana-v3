@@ -277,6 +277,7 @@ def scan():
             base = p.get("baseToken") or {}
             mint = base.get("address")
 
+            
             if not mint:
                 continue
 
@@ -295,40 +296,10 @@ def scan():
                 print("RugCheck error:", str(e))
                 continue
 
-                     if security["danger"]:
-            stats["blocked"] += 1
-
-            print("\nTOKEN DIBLOKIR:")
-            print("Mint:", mint)
-            print("Risiko RugCheck:")
-
-            for risk in security["risks"]:
-                if isinstance(risk, dict):
-                    print(
-                        "Level:", risk.get("level"),
-                        "| Nama:", risk.get("name"),
-                        "| Deskripsi:", risk.get("description")
-                    )
-
-            continue
-
-        
-            if price <= 0:
-                continue
-
-            try:
-                security = rugcheck(mint)
-            except Exception as e:
-                stats["security_errors"] += 1
-                print("RugCheck error:", str(e))
-                continue
-
             if security["danger"]:
                 stats["blocked"] += 1
-
                 print("\nTOKEN DIBLOKIR:")
                 print("Mint:", mint)
-                print("Risiko RugCheck:")
 
                 for risk in security["risks"]:
                     if isinstance(risk, dict):
@@ -352,6 +323,7 @@ def scan():
             sl = price * 0.95
             tp1 = price * 1.075
             tp2 = price * 1.10
+            
             
 
             top1 = security["top1"]
