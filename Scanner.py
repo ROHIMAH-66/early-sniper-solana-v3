@@ -295,22 +295,24 @@ def scan():
                 print("RugCheck error:", str(e))
                 continue
 
-            if security["danger"]:
-    stats["blocked"] += 1
+                        if security["danger"]:
+                stats["blocked"] += 1
 
-    print("\nTOKEN DIBLOKIR:")
-    print("Mint:", mint)
-    print("Risiko RugCheck:")
+                print("\nTOKEN DIBLOKIR:")
+                print("Mint:", mint)
+                print("Risiko RugCheck:")
 
-    for risk in security["risks"]:
-        if isinstance(risk, dict):
-            print(
-                "Level:", risk.get("level"),
-                "| Nama:", risk.get("name"),
-                "| Deskripsi:", risk.get("description")
-            )
+                for risk in security["risks"]:
+                    if isinstance(risk, dict):
+                        print(
+                            "Level:", risk.get("level"),
+                            "| Nama:", risk.get("name"),
+                            "| Deskripsi:", risk.get("description")
+                        )
 
-    continue
+                continue
+
+            warnings = security["warnings"]
 
             warnings = security["warnings"]
 
